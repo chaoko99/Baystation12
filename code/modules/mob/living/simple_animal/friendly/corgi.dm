@@ -6,10 +6,9 @@
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
-	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
-	speak_emote = list("barks", "woofs")
-	emote_hear = list("barks", "woofs", "yaps","pants")
-	emote_see = list("shakes its head", "shivers")
+	speak = list("YAP!", "Woof!", "Bark!", "AUUUUUU!")
+	emote_hear = list("barks!", "woofs!", "yaps!","pants.")
+	emote_see = list("shakes its head.", "shivers")
 	speak_chance = 1
 	turns_per_move = 10
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
@@ -50,7 +49,7 @@
 			if( !movement_target || !(movement_target.loc in oview(src, 3)) )
 				movement_target = null
 				stop_automated_movement = 0
-				for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3))
+				for(var/obj/item/weapon/reagent_containers/food/S in oview(src,3)) //Dogs do not descriminate for food.
 					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						break
@@ -80,7 +79,7 @@
 						visible_emote("stares at the [movement_target] that [movement_target.loc] has with sad puppy eyes.")
 
 		if(prob(1))
-			visible_emote(pick("dances around.","chases their tail."))
+			visible_emote(pick("dances around.","chases his tail."))
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)
@@ -88,14 +87,14 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
 	name = "Corgi meat"
-	desc = "Tastes like... well you know..."
+	desc = "Why would anyone do this?"
 
 /mob/living/simple_animal/corgi/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
 	if(istype(O, /obj/item/weapon/newspaper))
 		if(!stat)
 			for(var/mob/M in viewers(user, null))
 				if ((M.client && !( M.blinded )))
-					M.show_message("<span class='notice'>[user] baps [name] on the nose with the rolled up [O]</span>")
+					M.show_message("<span class='notice'>[user] bops [name] on the nose with the rolled up [O]</span>")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
 					set_dir(i)
@@ -194,3 +193,17 @@
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)
 					sleep(1)
+
+/mob/living/simple_animal/corgi/ian/hurcules
+	name = "Ensign Hurcules" //No, this is not a typo, shut up about it.
+	real_name = "Ensign Hurcules"
+	desc = "This is Hurcules; a noble and proud Welsh corgi. He's a bit pudgy, and somewhat old looking, \
+	but he has some real pep to his movements when you have his attention!"
+	icon_state = "hurcules"
+	icon_living = "hurcules"
+	icon_dead = "hurcules_dead"
+	speak = list("Auf!") //Dogs don't talk, but we need to put something here.
+	speak_emote = list()
+	emote_hear = list("barks!", "woofs.", "yaps!","pants.","yawns.","yawns quietly.","turns his head downward and stretches, yawning.")
+	emote_see = list("stares quietly.", "shivers.","flumps lazily on the floor.","licks his nose.","'s jowls pull up into a dopey grin.")
+	speed = 5
