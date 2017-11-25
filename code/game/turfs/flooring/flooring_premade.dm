@@ -4,6 +4,7 @@
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
 	plane = PLATING_PLANE
+	initial_flooring = /decl/flooring/plating //This can only break everything.
 
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"

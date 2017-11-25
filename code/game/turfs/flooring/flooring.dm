@@ -42,6 +42,13 @@ var/list/flooring_types
 /decl/flooring/proc/on_remove()
 	return
 
+/decl/flooring/plating
+	name = "plating"
+	desc = "The naked hull."
+	icon = 'icons/turf/flooring/plating.dmi'
+	icon_base = "plating"
+	flags = TURF_HAS_EDGES
+
 /decl/flooring/grass
 	name = "grass"
 	desc = "Do they smoke grass out in space, Bowie? Or do they smoke AstroTurf?"
