@@ -21,7 +21,7 @@
 	harm_intent_damage = 3
 	melee_damage_lower = 3
 	melee_damage_upper = 4
-	light_color = "#8A0707"
+	light_color = "#EB0C07"
 	attacktext = "mauled"
 	attack_sound = 'sound/weapons/bite.ogg'
 	min_gas = null
