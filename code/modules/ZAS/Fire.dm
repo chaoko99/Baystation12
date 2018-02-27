@@ -133,15 +133,17 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	var/datum/gas_mixture/air_contents = my_tile.return_air()
 
-	if(firelevel > 6)
-		icon_state = "3"
-		set_light(7, 3)
-	else if(firelevel > 2.5)
-		icon_state = "2"
-		set_light(5, 2)
-	else
-		icon_state = "1"
-		set_light(3, 1)
+	switch(firelevel)
+		if(0 to 2.5)
+			icon_state = "1"
+			set_light(3, 1)
+		if(2.5 to 6)
+			icon_state = "2"
+			set_light(5, 2)
+		else
+			icon_state = "3"
+			set_light(7, 3)
+
 
 	for(var/mob/living/L in loc)
 		L.FireBurn(firelevel, air_contents.temperature, air_contents.return_pressure())  //Burn the mobs!
@@ -180,6 +182,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	animate(src, color = fire_color(air_contents.temperature), 5)
 	set_light(l_color = color)
+	playsound(src, 'sound/effects/fire_loop.ogg', 100, 0)
 
 /obj/fire/New(newLoc,fl)
 	..()
@@ -196,6 +199,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	firelevel = fl
 	SSair.active_hotspots.Add(src)
+	playsound('sound/effects/fire.ogg', 15, 1)
 
 /obj/fire/proc/fire_color(var/env_temperature)
 	var/temperature = max(4000*sqrt(firelevel/vsc.fire_firelevel_multiplier), env_temperature)
