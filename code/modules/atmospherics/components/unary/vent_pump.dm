@@ -373,6 +373,8 @@
 			"<span class='notice'>You [welded ? "weld \the [src] shut" : "unweld \the [src]"].</span>", \
 			"You hear welding.")
 		return 1
+	else
+		..()
 
 #undef DEFAULT_PRESSURE_DELTA
 
