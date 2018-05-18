@@ -180,7 +180,7 @@
 
 
 /obj/item/weapon/cell/high
-	name = "advanced power cell"
+	name = "high-capacity power cell"
 	desc = "An advanced high-grade power cell, for use in important systems."
 	origin_tech = list(TECH_POWER = 2)
 	icon_state = "hcell"
@@ -202,7 +202,7 @@
 
 
 /obj/item/weapon/cell/super
-	name = "enhanced power cell"
+	name = "super-capacity power cell"
 	desc = "A very advanced power cell with increased energy density, for use in critical applications."
 	origin_tech = list(TECH_POWER = 5)
 	icon_state = "scell"
@@ -215,7 +215,7 @@
 
 
 /obj/item/weapon/cell/hyper
-	name = "superior power cell"
+	name = "hyper-capacity power cell"
 	desc = "Pinnacle of power storage technology, this very expensive power cell provides the best energy density reachable with conventional electrochemical cells."
 	origin_tech = list(TECH_POWER = 6)
 	icon_state = "hpcell"
@@ -257,5 +257,19 @@
 	origin_tech = list(TECH_POWER = 2, TECH_BIO = 4)
 	icon = 'icons/mob/slimes.dmi' //'icons/obj/harvest.dmi'
 	icon_state = "yellow slime extract" //"potato_battery"
-	maxcharge = 200
+	maxcharge = 2000
 	matter = null
+
+
+/obj/item/weapon/cell/slime/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/cell/slime/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSobj, src)
+
+/obj/item/weapon/cell/slime/Process()
+	if(world.time % 3 == 1) //Recharge every third tick.
+		give(10)
+
