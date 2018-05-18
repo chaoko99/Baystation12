@@ -57,8 +57,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(jitteriness > 100 && !is_jittery)
-		spawn(0)
-			jittery_process()
+		addtimer(CALLBACK(src, .proc/jittery_process), 0)
 
 // Typo from the original coder here, below lies the jitteriness process. So make of his code what you will, the previous comment here was just a copypaste of the above.
 /mob/proc/jittery_process()
