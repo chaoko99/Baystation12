@@ -1,3 +1,6 @@
+/obj/item/ammo_casing/
+	matter = list(DEFAULT_WALL_MATERIAL = 10)
+
 /obj/item/ammo_casing/a357
 	desc = "A .357 bullet casing."
 	caliber = "357"
