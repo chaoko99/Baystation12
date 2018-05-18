@@ -855,22 +855,36 @@
 		to_chat(src,"<span class='notice'>You feel like you're [pick("moving","flying","floating","falling","hovering")].</span>")
 
 /mob/living/carbon/human/handle_stomach()
-	spawn(0)
-		for(var/a in stomach_contents)
-			if(!(a in contents) || isnull(a))
-				stomach_contents.Remove(a)
-				continue
-			if(iscarbon(a)|| isanimal(a))
-				var/mob/living/M = a
-				if(M.stat == DEAD)
-					M.death(1)
+	for(var/a in stomach_contents)
+		if(!(a in contents) || isnull(a))
+			stomach_contents.Remove(a)
+			continue
+		if(iscarbon(a)|| isanimal(a))
+			var/mob/living/M = a
+			if(M.stat == DEAD && M.getFireLoss() <= 150)
+				M.death(1)
+				if(ishuman(M)) //Let's not just overtly remove players from existence.
+					var/mob/living/carbon/human/H = M
+					H.ChangeToSkeleton()
+					stomach_contents.Remove(H)
+					to_chat(src, "<span class = 'alium'>\The [H] has long since ceased struggling, and can no longer provide nutrition, so you regurgitate it.</span>")
+					forceMove(H, get_turf(src))
+					new /obj/effect/decal/cleanable/vomit(get_turf(src))
+					continue
+				else
 					stomach_contents.Remove(M)
 					qdel(M)
 					continue
-				if(life_tick % 3 == 1)
-					if(!(M.status_flags & GODMODE))
-						M.adjustBruteLoss(5)
-					nutrition += 10
+			if(life_tick % 2 == 1)
+				if(!(M.status_flags & GODMODE))
+					M.adjustOxyLoss(5)
+					M.adjustFireLoss(3)
+					nutrition += 2
+					if(istype(species, /datum/species/xenos/))
+						var/datum/species/xenos/X = species
+						var/obj/item/organ/internal/xeno/plasmavessel/P = internal_organs_by_name["plasma vessel"]
+						P.stored_plasma += X.weeds_plasma_rate //Probably unwise not to set this manually, but it's a good baseline to use.
+						P.stored_plasma = min(max(P.stored_plasma,0),P.max_plasma)
 
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)
