@@ -316,7 +316,7 @@
 			stored_shock_by_ref["\ref[src]"] += shock_damage
 		else
 			stored_shock_by_ref["\ref[src]"] = shock_damage
-		return
+		return 0
 
 	if (!def_zone)
 		def_zone = pick(BP_L_HAND, BP_R_HAND)
