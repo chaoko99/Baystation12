@@ -22,7 +22,7 @@
 		handle_random_events()
 
 		//stuff in the stomach
-		handle_stomach()
+		addtimer(CALLBACK(src, /mob/living/proc/handle_stomach), 0) //This used to start with a spawn. It looks bad, but is notably cheaper.
 
 		// eye, ear, brain damages
 		handle_disabilities()
