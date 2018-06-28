@@ -69,6 +69,7 @@
 	set_extension(src, /datum/extension/penetration, /datum/extension/penetration/proc_call, .proc/CheckPenetration)
 	if(glass)
 		set_opacity(0)
+	. = ..()
 
 /obj/machinery/door/proc/SetBounds()
 	if(dir in list(EAST, WEST))
