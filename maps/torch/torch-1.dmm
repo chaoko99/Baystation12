@@ -5375,9 +5375,9 @@
 /obj/item/weapon/storage/belt/archaeology,
 /obj/item/weapon/storage/belt/archaeology,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/storage/ore,
-/obj/item/weapon/storage/ore,
-/obj/item/weapon/storage/ore,
+/obj/item/weapon/storage/specialized/ore,
+/obj/item/weapon/storage/specialized/ore,
+/obj/item/weapon/storage/specialized/ore,
 /obj/machinery/light/spot{
 	dir = 1
 	},
@@ -6221,15 +6221,15 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/storage/plants,
-/obj/item/weapon/storage/plants,
-/obj/item/weapon/storage/plants,
+/obj/item/weapon/storage/specialized/plants,
+/obj/item/weapon/storage/specialized/plants,
+/obj/item/weapon/storage/specialized/plants,
 /obj/item/device/slime_scanner,
 /obj/item/device/analyzer/plant_analyzer,
 /obj/item/device/analyzer/plant_analyzer,
 /obj/item/device/analyzer/plant_analyzer,
 /obj/item/device/analyzer/plant_analyzer,
-/obj/item/weapon/storage/plants,
+/obj/item/weapon/storage/specialized/plants,
 /obj/effect/floor_decal/corner/mauve{
 	icon_state = "corner_white";
 	dir = 6
