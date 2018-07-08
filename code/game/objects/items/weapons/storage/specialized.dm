@@ -5,11 +5,24 @@
 	These storages typically should also support quick gather and quick empty to make managing large numbers of items easier.
 */
 
+/obj/item/weapon/storage/specialized/equipped(var/mob/living/user)
+	if(ismob(loc) && allow_quick_gather) //We don't give a damn where it is, so long as it's on our person and not in a backpack. This has the potential for badness (See: How voidsuit construction was handled in the past.)
+		GLOB.moved_event.register(user, src, .proc/fill_from_turf, user)
+
+/obj/item/weapon/storage/specialized/dropped(var/mob/living/user)
+	if(ismob(loc) && allow_quick_gather)
+		GLOB.moved_event.unregister(user, src, .proc/fill_from_turf, user)
+
+/obj/item/weapon/storage/specialized/proc/fill_from_turf(var/mob/living/user)
+	var/turf/T = get_turf(src)
+	gather_all(T, user)
+
+
 // -----------------------------
 //        Mining Satchel
 // -----------------------------
 
-/obj/item/weapon/storage/ore
+/obj/item/weapon/storage/specialized/ore
 	name = "mining satchel"
 	desc = "This sturdy bag can be used to store and transport ores."
 	icon = 'icons/obj/mining.dmi'
@@ -23,12 +36,17 @@
 	allow_quick_empty = 1
 	use_to_pickup = 1
 
+/obj/item/weapon/storage/specialized/ore/gather_all(var/mob/living/user)
+	..()
+	if(istype(user.pulling, /obj/structure/ore_box))
+		var/obj/structure/ore_box/O = user.pulling
+		resolve_attackby(O, user)
 
 // -----------------------------
 //          Plant bag
 // -----------------------------
 
-/obj/item/weapon/storage/plants
+/obj/item/weapon/storage/specialized/plants
 	name = "botanical satchel"
 	desc = "This bag can be used to store all kinds of plant products and botanical specimen."
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -50,7 +68,7 @@
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
 // This is old and terrible
 
-/obj/item/weapon/storage/sheetsnatcher
+/obj/item/weapon/storage/specialized/sheetsnatcher
 	name = "sheet snatcher"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
@@ -58,7 +76,7 @@
 
 	storage_ui = /datum/storage_ui/default/sheetsnatcher
 
-	var/capacity = 300; //the number of sheets it can carry.
+	var/capacity = 300 //the number of sheets it can carry.
 	w_class = ITEM_SIZE_NORMAL
 	storage_slots = 7
 
@@ -66,8 +84,8 @@
 	use_to_pickup = 1
 	New()
 		..()
-		//verbs -= /obj/item/weapon/storage/verb/quick_empty
-		//verbs += /obj/item/weapon/storage/sheetsnatcher/quick_empty
+		//verbs -= /obj/item/weapon/storage/specialized/verb/quick_empty
+		//verbs += /obj/item/weapon/storage/specialized/sheetsnatcher/quick_empty
 
 	can_be_inserted(obj/item/W, mob/user, stop_messages = 0)
 		if(!istype(W,/obj/item/stack/material))
@@ -153,7 +171,7 @@
 //    Sheet Snatcher (Cyborg)
 // -----------------------------
 
-/obj/item/weapon/storage/sheetsnatcher/borg
+/obj/item/weapon/storage/specialized/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
 	desc = ""
 	capacity = 500//Borgs get more because >specialization

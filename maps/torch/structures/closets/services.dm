@@ -30,7 +30,7 @@
 /obj/structure/closet/secure_closet/hydroponics_torch/WillContain()
 	return list(
 		/obj/item/clothing/head/soft/green,
-		/obj/item/weapon/storage/plants,
+		/obj/item/weapon/storage/specialized/plants,
 		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/hatchet,

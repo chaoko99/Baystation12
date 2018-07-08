@@ -711,7 +711,7 @@ obj/random/obstruction/spawn_choices()
 				/obj/item/weapon/storage/box/large = 2,
 				/obj/item/weapon/storage/box/glowsticks = 3,
 				/obj/item/weapon/storage/wallet = 1,
-				/obj/item/weapon/storage/ore = 2,
+				/obj/item/weapon/storage/specialized/ore = 2,
 				/obj/item/weapon/storage/belt/utility/full = 2,
 				/obj/item/weapon/storage/belt/medical/emt = 2,
 				/obj/item/weapon/storage/belt/medical = 2,

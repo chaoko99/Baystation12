@@ -81,7 +81,7 @@
 					/obj/item/clothing/gloves/thick,
 					/obj/item/clothing/shoes/black,
 					/obj/item/device/analyzer,
-					/obj/item/weapon/storage/ore,
+					/obj/item/weapon/storage/specialized/ore,
 					/obj/item/device/flashlight/lantern,
 					/obj/item/weapon/shovel,
 					/obj/item/weapon/pickaxe,

@@ -39,7 +39,7 @@
 		for(var/datum/reagent/nutriment/N in S.reagents.reagent_list)
 			biomass = Clamp(biomass + round(N.volume*deconstruct_eff),1,biomass_max)
 		qdel(O)
-	else if(istype(O, /obj/item/weapon/storage/plants))
+	else if(istype(O, /obj/item/weapon/storage/specialized/plants))
 		if(!O.contents || !O.contents.len)
 			return
 		to_chat(user, "You empty \the [O] into \the [src]")

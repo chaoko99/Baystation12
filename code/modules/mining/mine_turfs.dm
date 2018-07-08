@@ -489,8 +489,8 @@ var/list/mining_floors = list()
 		to_chat(user, "<span class='notice'>You dug a hole.</span>")
 		gets_dug()
 
-	else if(istype(W,/obj/item/weapon/storage/ore))
-		var/obj/item/weapon/storage/ore/S = W
+	else if(istype(W,/obj/item/weapon/storage/specialized/ore))
+		var/obj/item/weapon/storage/specialized/ore/S = W
 		if(S.collection_mode)
 			for(var/obj/item/weapon/ore/O in contents)
 				O.attackby(W,user)
@@ -548,17 +548,3 @@ var/list/mining_floors = list()
 			if(istype(get_step(src, direction), /turf/simulated/floor/asteroid))
 				A = get_step(src, direction)
 				A.updateMineralOverlays()
-
-/turf/simulated/floor/asteroid/Entered(atom/movable/M as mob|obj)
-	..()
-	if(istype(M,/mob/living/silicon/robot))
-		var/mob/living/silicon/robot/R = M
-		if(R.module)
-			if(istype(R.module_state_1,/obj/item/weapon/storage/ore))
-				attackby(R.module_state_1,R)
-			else if(istype(R.module_state_2,/obj/item/weapon/storage/ore))
-				attackby(R.module_state_2,R)
-			else if(istype(R.module_state_3,/obj/item/weapon/storage/ore))
-				attackby(R.module_state_3,R)
-			else
-				return

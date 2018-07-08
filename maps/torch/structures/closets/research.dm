@@ -125,7 +125,7 @@
 		/obj/item/clothing/gloves/thick,
 		/obj/item/clothing/shoes/workboots,
 		/obj/item/device/analyzer,
-		/obj/item/weapon/storage/ore,
+		/obj/item/weapon/storage/specialized/ore,
 		/obj/item/device/radio/headset/headset_mining,
 		/obj/item/device/radio/headset/headset_mining/alt,
 		/obj/item/device/flashlight/lantern,
